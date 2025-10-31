@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Login Ruang Operasi</title>
+  <style>
+    body{background:#0b2a33;color:#eaf2f6;min-height:100vh;display:grid;place-items:center;margin:0;font-family:system-ui,Segoe UI,Roboto,Arial}
+    .login-card{width:100%;max-width:360px;background:#114a5b;border-radius:12px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .login-title{font-size:1.25rem;font-weight:700;margin:6px 0 14px}
+    .login-inner{max-width:280px;margin:0 auto}
+    .login-field{width:100%;padding:8px 10px;border:0;border-radius:8px;margin:8px 0;background:#0c3946;color:#eaf2f6;box-sizing:border-box}
+    .login-btn{width:100%;padding:9px 10px;border:0;border-radius:8px;background:#ff8800;color:#111;font-weight:700;cursor:pointer}
+    .remember{display:flex;align-items:center;gap:.5rem;font-size:.9rem;opacity:.9;margin:6px 0 10px}
+    .muted{font-size:.85rem;opacity:.7;text-align:center;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="login-title">Login Ruang Operasi</div>
+    <div class="login-inner">
+      <label>Username</label>
+      <input id="username" class="login-field" placeholder="masukkan username" autocomplete="username" />
+      <label>Password</label>
+      <input id="password" type="password" class="login-field" placeholder="masukkan password" autocomplete="current-password" />
+      <label class="remember"><input id="remember" type="checkbox"> Ingat saya</label>
+      <button id="btnLogin" class="login-btn">Masuk</button>
+    </div>
+  </div>
+
+  <script>
+  window.USERS = [
+  { username: 'admin',   password: 'admin12345', name: 'Admin',   role: 'admin' },
+  { username: 'kepalaruangan', password: 'kepalaruangan',   name: 'Kepala Ruangan', role: 'Operator' },
+  { username: 'perawat1', password: '197607301997031002',   name: 'Dadan Darwanto', role: 'staff' },
+  { username: 'perawat2', password: '814068107',   name: 'Aang Darajat', role: 'staff' },
+  { username: 'perawat3', password: '198004032007012009',   name: 'Ade Rosita', role: 'staff' },
+  { username: 'perawat4', password: '814069085',   name: 'Adhim Fatah', role: 'staff' },
+  { username: 'perawat5', password: '814069018',   name: 'Adi Frengki', role: 'staff' },
+  { username: 'perawat6', password: '196803261990031006',   name: 'Adnan Gunawan', role: 'staff' },
+  { username: 'perawat7', password: '814068963',   name: 'Ajat Destiana', role: 'staff' },
+  { username: 'perawat8', password: '198508072010011000',   name: 'Andi Sobandi', role: 'staff' },
+  { username: 'perawat9', password: '197512112006042000',   name: 'Apong', role: 'staff' },
+  { username: 'perawat10', password: '814067985',   name: 'Cecep Maman', role: 'staff' },
+  { username: 'perawat11', password: '814069013',   name: 'Dea Fitriana', role: 'staff' },
+  { username: 'perawat12', password: '197707262000121001',   name: 'Deden Witaryono', role: 'staff' },
+  { username: 'perawat13', password: '814069054',   name: 'Denny R', role: 'staff' },
+  { username: 'perawat14', password: '814069057',   name: 'Dini Diah', role: 'staff' },
+  { username: 'perawat15', password: '198103232008012005',   name: 'Dini Mardiniani', role: 'staff' },
+  { username: 'perawat16', password: '197306021993032005',   name: 'Empong Setiawati', role: 'staff' },
+  { username: 'perawat17', password: '814068467',   name: 'Gumilar Fajar', role: 'staff' },
+  { username: 'perawat18', password: '814069008',   name: 'Gunawan Haris', role: 'staff' },
+  { username: 'perawat19', password: '814068414',   name: 'Hedi Hidayat', role: 'staff' },
+  { username: 'perawat20', password: '198110012008012006',   name: 'Ibid Badriah', role: 'staff' },
+  { username: 'perawat21', password: '814069015',   name: 'Ilham Mulyadin', role: 'staff' },
+  { username: 'perawat22', password: '814068815',   name: 'Irnawati Sutarno', role: 'staff' },
+  { username: 'perawat23', password: '199603312024212002',   name: 'Kania Endah', role: 'staff' },
+  { username: 'perawat24', password: '198207312008011003',   name: 'Koko Abulkodir', role: 'staff' },
+  { username: 'perawat25', password: '814069017',   name: 'Lutfhy Fatricia', role: 'staff' },
+  { username: 'perawat26', password: '199410152025212055',   name: 'Mayang Fani', role: 'staff' },
+  { username: 'perawat27', password: '814068543',   name: 'Melliana Endah', role: 'staff' },
+  { username: 'perawat28', password: '814069063',   name: 'Mia Mutmainah', role: 'staff' },
+  { username: 'perawat29', password: '197306111994031005',   name: 'Momon Suherman', role: 'staff' },
+  { username: 'perawat30', password: '814068990',   name: 'Muhamad Mabruri', role: 'staff' },
+  { username: 'perawat31', password: '814068049',   name: 'Nuni Nurmayanti', role: 'staff' },
+  { username: 'perawat32', password: '814068103',   name: 'Nurwulan Pusfitasari', role: 'staff' },
+  { username: 'perawat33', password: '814068187',   name: 'Penti Yuliana', role: 'staff' },
+  { username: 'perawat34', password: '814068968',   name: 'Pupung Giri', role: 'staff' },
+  { username: 'perawat35', password: '814069014',   name: 'Resty Ariska', role: 'staff' },
+  { username: 'perawat36', password: '814067995',   name: 'Reval Faisaly', role: 'staff' },
+  { username: 'perawat37', password: '814068409',   name: 'Rohmatun Nisa', role: 'staff' },
+  { username: 'perawat38', password: '814068987',   name: 'San Maulana', role: 'staff' },
+  { username: 'perawat39', password: '197309021994031004',   name: 'Satang Karmajaya', role: 'staff' },
+  { username: 'perawat40', password: '814068415',   name: 'Shidiq Alfarishi', role: 'staff' },
+  { username: 'perawat41', password: '198211022023212002',   name: 'Siti Suryani', role: 'staff' },
+  { username: 'perawat42', password: '198206292006092000',   name: 'Tati Rodiah', role: 'staff' },
+  { username: 'perawat43', password: '197303281994032004',   name: 'Teti Rusmawati', role: 'staff' },
+  { username: 'perawat44', password: '814069016',   name: 'Tresa Pratiwi', role: 'staff' },
+  { username: 'perawat45', password: '196803111989012001',   name: 'Tuti Humaeroh', role: 'staff' },
+  { username: 'perawat46', password: '198512082022212001',   name: 'Tuti Kusmayanti', role: 'staff' },
+  { username: 'perawat47', password: '197802282007011005',   name: 'Ujang Cucu', role: 'staff' },
+  { username: 'perawat48', password: '197510142005011005',   name: 'Wendra Herdian', role: 'staff' },
+  { username: 'perawat49', password: '198207132008012003',   name: 'Yanti Yulianti', role: 'staff' },
+  { username: 'perawat50', password: '197708202006042015',   name: 'Yati Sumyati', role: 'staff' },
+  { username: 'perawat51', password: '197309202006041019',   name: 'Yuhaendi', role: 'staff' },
+  { username: 'perawat52', password: '814068019',   name: 'Yuli Susyanti', role: 'staff' },
+  { username: 'perawat53', password: '814069084',   name: 'Yulia Nur', role: 'staff' },
+  { username: 'perawat54', password: '197806282008012000',   name: 'Yunita Sondaria', role: 'staff' },
+];
+  </script>
+
+  <script src="auth.js"></script>
+  <script>
+    // Auto-login kalau pernah centang "ingat saya"
+    (function(){
+      const u = ORAuth.currentUser();
+      if (u && !sessionStorage.getItem('ib_ros_current_user')) {
+        sessionStorage.setItem('ib_ros_current_user', JSON.stringify(u));
+        location.href = 'index.html';
+      }
+    })();
+
+    document.getElementById('btnLogin').addEventListener('click', ()=>{
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      const r = document.getElementById('remember').checked;
+      try{
+        ORAuth.login(u, p, r);
+        location.href = 'index.html';
+      }catch(e){
+        alert(e.message || 'Gagal login');
+      }
+    });
+  </script>
+</body>
+</html>

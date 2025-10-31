@@ -1,0 +1,10 @@
+/* Pastikan label di header muncul jelas */
+.card-header .form-label{
+  display:block !important;
+  color:#d7e3ff !important;
+  font-weight:500;
+  margin-bottom:.25rem;
+}
+.card-header{ overflow: visible; }
+.card-header .form-control,
+.card-header .form-select{ min-width:220px; }
